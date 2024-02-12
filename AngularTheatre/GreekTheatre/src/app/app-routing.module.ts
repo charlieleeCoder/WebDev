@@ -9,7 +9,7 @@ import { PerformanceComponent } from './performance.component';
 const routes: Routes = [ 
   { path: 'tragedy', component: TragedyComponent, title: 'Tragedy'},  
   { path: 'comedy', component: ComedyComponent, title: 'Comedy'}, 
-  { path: 'performance', component: PerformanceComponent, title: 'Home'},
+  { path: 'performance', component: PerformanceComponent, title: 'Performance'},
   { path: 'index', component: HomeComponent, title: 'Home'},
   { path: '', component: HomeComponent, title: 'Home'},
  
