@@ -3,19 +3,24 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home.component';
-import { TragedyComponent } from './tragedy.component';
+import { HomeComponent } from './Home/home.component';
+import { TragedyComponent } from './Tragedy/tragedy.component';
+import { AllCapsPipe } from './Pipes/all-caps.pipe';
+import { ComedyComponent } from './Comedy/comedy.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TragedyComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AllCapsPipe,
+    ComedyComponent,
+    TragedyComponent,
+    HomeComponent,
   ],
+  exports: [],
   providers: [
     provideClientHydration()
   ],

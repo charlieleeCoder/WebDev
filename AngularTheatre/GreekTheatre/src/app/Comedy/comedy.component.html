@@ -1,6 +1,6 @@
 <div class="container-lg fw-light fs-3" style="margin-top: 1%;">
     <p class="display-4 title">
-        {{ title }}
+        {{ title | allCaps }}
     </p>
 </div>
 <div class="container my-5">
@@ -11,7 +11,7 @@
             Old Comedy
             </h1>
             <p class="col-12 col-xs-12 col-sm-6 col-md-8 col-lg-10 right-info">
-                The most important Old Comic dramatist is Aristophanes (born in 446 BC). 
+                {{ 'The most important Old Comic dramatist is Aristophanes (born in 446 BC).'  | allCaps }}
                 His works, with their pungent political satire and abundance of sexual and scatological innuendo, effectively define the genre today. 
                 Aristophanes lampooned the most important personalities and institutions of his day, as can be seen, for example, 
                 in his buffoonish portrayal of Socrates in The Clouds, and in his racy anti-war farce Lysistrata. 
