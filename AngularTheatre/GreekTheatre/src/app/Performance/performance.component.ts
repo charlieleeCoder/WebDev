@@ -3,9 +3,6 @@ import { performanceP1, performanceP2, performanceP3,  performanceP4, performanc
 import { paragraphs } from './performancetext';
 import { NgClass, NgFor, NgForOf, CommonModule } from '@angular/common';
 
-// This section wants to be factored out to a seperate file, so that changes on logic and text don't require branches on the same file.
-
-
 @Component({
   standalone: true,
   selector: 'app-performance',
