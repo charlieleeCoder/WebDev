@@ -10,11 +10,9 @@
             <h1 class="greek col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 right-subtitle" style="display: inline-block; padding-left: 20px;">
             Overview
             </h1>
-            <p class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 right-info"  >
-                {{ p1 }}
-            </p>
-            <p class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 right-info">
-                {{ p2 }}
+            <p class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 right-info" *ngFor="let p of overview_ps; let e=even; let o=odd; let i=index;" >
+                <!-- {{ i }} {{ e }} -->
+                {{ p.text }}
             </p>
         </span>
     </div>

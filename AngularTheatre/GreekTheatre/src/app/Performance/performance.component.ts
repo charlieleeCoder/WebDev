@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
-import { performanceP1, performanceP2, performanceP3,  performanceP4, performanceP5, performanceP6, performanceP7 } from './performancetext';
-import { NgClass, NgFor } from '@angular/common';
+import { performanceP1, performanceP2, performanceP3,  performanceP4, performanceP5, performanceP6, performanceP7} from './performancetext';
+import { paragraphs } from './performancetext';
+import { NgClass, NgFor, NgForOf, CommonModule } from '@angular/common';
 
 // This section wants to be factored out to a seperate file, so that changes on logic and text don't require branches on the same file.
 
 
 @Component({
+  standalone: true,
   selector: 'app-performance',
   templateUrl: './performance.component.html',
-  styleUrl: '../app.component.css'
+  styleUrl: '../app.component.css',
+  imports: [NgFor, NgClass, NgForOf, CommonModule]
 })
 export class PerformanceComponent {
 
@@ -25,7 +28,10 @@ export class PerformanceComponent {
   // Bootstrap + custom CSS classes
   right_paragraph = "col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 right-info"
   left_paragraph = "col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 left-info"
-  // Implement
-
+  // Avoid repetition
+  overview_ps: paragraphs[] = [
+    {text: this.p1},
+    {text: this.p2}
+  ];
 
 }
