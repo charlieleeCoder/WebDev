@@ -18,7 +18,7 @@ import { ComedyComponent } from './Comedy/comedy.component';
     AllCapsPipe,
     ComedyComponent,
     TragedyComponent,
-    HomeComponent,
+    HomeComponent
   ],
   exports: [],
   providers: [

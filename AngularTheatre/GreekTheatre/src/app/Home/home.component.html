@@ -10,57 +10,19 @@
 <section style="background-color: #F0F2F5;">
     <div class="container py-5">
         <div class="main-timeline">
-        <div class="timeline left">
-            <div class="card">
-            <div class="card-body p-4">
-                <h3>1200 BCE - Trojan War</h3>
-                <p class="mb-0">In Greek mythology, the Trojan War was waged against the city of Troy by the Achaeans (Greeks) after Paris of Troy took Helen from her husband Menelaus, king of Sparta. The war is one of the most important events in Greek mythology, and it has been narrated through many works of Greek literature, most notably Homer's Iliad. </p>
+            <div *ngFor="let section of body; let e=even; let o=odd; let i=index;">
+                <div [ngClass]=" o ?'timeline left':'timeline right' "> 
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <h3> {{ section.header }} </h3>
+                            <p class="mb-0"> {{ section.paragraph }} </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
-        <div class="timeline right">
-            <div class="card">
-            <div class="card-body p-4">
-                <h3>800 BCE - First Greek Alphabet</h3>
-                <p class="mb-0">The Greek alphabet has been used to write the Greek language since the late 9th or early 8th century BC. It is derived from the earlier Phoenician alphabet, and was the earliest known alphabetic script to have distinct letters for vowels as well as consonants.</p>
-            </div>
-            </div>
-        </div>
-        <div class="timeline left">
-            <div class="card">
-            <div class="card-body p-4">
-                <h3>532 BCE - Thespis wins a drama contest</h3>
-                <p class="mb-0">Thespis, the first recorded actor, wins a theatrical contest. This leads to the common modern term thespian for an actor. </p>
-            </div>
-            </div>
-        </div>
-        <div class="timeline right">
-            <div class="card">
-            <div class="card-body p-4">
-                <h3>499 BCE - Persian War</h3>
-                <p class="mb-0">The Greco-Persian Wars were a series of conflicts between the Achaemenid Empire and Greek city-states that started in 499 BCE and lasted until 449 BCE. The collision between the fractious political world of the Greeks and the enormous empire of the Persians began when Cyrus the Great conquered the Greek-inhabited region of Ionia in 547 BCE.</p>
-            </div>
-            </div>
-        </div>
-        <div class="timeline left">
-            <div class="card">
-            <div class="card-body p-4">
-                <h3>323 BCE - Alexander the Great dies</h3>
-                <p class="mb-0">According to historical accounts, Alexander's body began to decompose six days after his death. Proposed causes of Alexander's death include alcoholic liver disease, fever, and strychnine poisoning, but little data support those versions.</p>
-            </div>
-            </div>
-        </div>
-        <div class="timeline right">
-            <div class="card">
-            <div class="card-body p-4">
-                <h3>86 BCE Sulla captures Athens</h3>
-                <p class="mb-0">In 88 Sulla set off for Greece in charge of the war against Mithradates. By the spring of 87 most of Greece was in his power, and after a long siege he captured Athens in 86.</p>
-            </div>
-            </div>
-        </div>
         </div>
     </div>
-    </section>
+</section>
 <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"></script> 
 </main>
 
