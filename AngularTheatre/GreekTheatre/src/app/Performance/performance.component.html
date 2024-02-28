@@ -1,51 +1,31 @@
 <div class="container-lg fw-light fs-3" style="margin-top: 15px; margin-bottom: 0px;">
     <p class="display-4 title" style="margin-bottom: 0px;">
-        {{ title }}
+        {{ title | allCaps }}
     </p>
 </div>
 <div class="container my-5">
-    <div class="row">
-        <span>
-            <img src="../assets/images/Dionysus.jpg" alt="Dionysus, God of Wine and Revelry" style="display: inline; float: left; padding-bottom: 10px;  padding-top: 25px;" class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-3">
-            <h1 class="greek col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 right-subtitle" style="display: inline-block; padding-left: 20px;">
-            Overview
-            </h1>
-            <p class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 right-info" *ngFor="let p of overview_ps; let e=even; let o=odd; let i=index;" >
-                <!-- {{ i }} {{ e }} -->
-                {{ p.text }}
-            </p>
-        </span>
-    </div>
-    <div class="row">
-        <span>
-            <img src="../assets/images/theatregrand.jpg" alt="Theatre of Pergamon" style="display: inline; float: right; padding-bottom: 20px; padding-top: 15px;" class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-4">
-            <h1 class="greek col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 left-subtitle" style="display: inline-block;">
-            Architecture
-            </h1>
-            <p class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 left-info">
-                {{ p3 }}
-            </p>
-            <p class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 left-info">
-                {{ p4 }}
-            </p>
-        </span>
-    </div>   
-    <div class="row">
-        <span>
-            <img src="../assets/images/deusexmachina.jpg" alt="An Ancient Greek Mechane" style="display: inline; float: left; padding-bottom: 5px; padding-top: 15px;" class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-4">
-            <h1 class="greek col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8  right-subtitle" style="display: inline-block;  padding-left: 20px;">
-            Theatre Craft
-            </h1>
-            <p class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 right-info">
-                {{ p5 }}
-            </p>
-            <p class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 right-info">
-                {{ p6 }}
-            </p>
-            <p class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-8 right-info">
-                {{ p7 }}
-            </p>
-        </span>
+    <div *ngFor="let section of body; let e=even; let o=odd; let i=index;">
+        <div class="row">
+            <span> 
+                <div *ngIf="i == 0">
+                    <img src="../assets/images/Dionysus.jpg" alt="Dionysus, God of Wine and Revelry" style="display: inline; float: left; padding-bottom: 10px;  padding-top: 25px;" class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                </div>
+                <div *ngIf="i == 1">
+                    <img src="../assets/images/theatregrand.jpg" alt="Theatre of Pergamon" style="display: inline; float: right; padding-bottom: 5px; padding-top: 15px;" class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                </div>
+                <div *ngIf="i == 2">
+                    <img src="../assets/images/deusexmachina.jpg" alt="An Ancient Greek Mechane" style="display: inline; float: left; padding-bottom: 5px; padding-top: 15px;" class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                </div>
+                <h1 [ngClass]=" o ? 'greek col-12 col-xs-12 col-sm-6 col-md-8 col-lg-9 left-subtitle':'greek col-12 col-xs-12 col-sm-6 col-md-8 col-lg-9 right-subtitle' "> 
+                    {{ section.title }} 
+                </h1>
+                <div *ngFor="let paragraph of section.paragraphs;">
+                    <p [ngClass]=" o ? 'col-12 col-xs-12 col-sm-6 col-md-8 col-lg-9 left-info':'col-12 col-xs-12 col-sm-6 col-md-8 col-lg-9 right-info' "> 
+                        {{ paragraph }} 
+                    </p>
+                </div>
+            </span>
+        </div>
     </div>
     <br>
     <p class="col-12" style="text-align: center;">
