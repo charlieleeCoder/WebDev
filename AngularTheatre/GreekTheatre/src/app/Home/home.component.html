@@ -11,7 +11,7 @@
     <div class="container py-5">
         <div class="main-timeline">
             <div *ngFor="let section of body; let e=even; let o=odd; let i=index;">
-                <div [ngClass]=" o ?'timeline left':'timeline right' "> 
+                <div [ngClass]=" o ? 'timeline left':'timeline right' "> 
                     <div class="card">
                         <div class="card-body p-4">
                             <h3> {{ section.header }} </h3>
