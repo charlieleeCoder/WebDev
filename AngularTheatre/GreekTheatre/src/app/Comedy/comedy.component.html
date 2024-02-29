@@ -7,15 +7,7 @@
     <div *ngFor="let section of body; let e=even; let o=odd; let i=index;">
         <div class="row">
             <span> 
-                <div *ngIf="i == 0">
-                    <img src="../assets/images/Aristophanes.jpg" alt="Aristophanes, the playwright" style="display: inline; float: left; padding-bottom: 5px; padding-top: 15px;" class="col-12 col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                </div>
-                <div *ngIf="i == 1">
-                    <img src="../assets/images/theatremask.jpg" alt="Sophocles, the playwright" style="display: inline; float: right; padding-bottom: 5px; padding-top: 15px;" class="col-12 col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                </div>
-                <div *ngIf="i == 2">
-                    <img src="../assets/images/Menander.jpg" alt="A Classical theatre mask" style="display: inline; float: left; padding-bottom: 5px; padding-top: 15px;" class="col-12 col-xs-12 col-sm-6 col-md-4 col-lg-2">
-                </div>
+                <img [src]="section.img" alt="Sophocles, the playwright" style="display: inline; float: right; padding-bottom: 5px; padding-top: 15px;" class="col-12 col-xs-12 col-sm-6 col-md-4 col-lg-2">
                 <h1 [ngClass]=" o ? 'greek col-12 col-xs-12 col-sm-6 col-md-8 col-lg-10 left-subtitle':'greek col-12 col-xs-12 col-sm-6 col-md-8 col-lg-10 right-subtitle' "> 
                     {{ section.title }} 
                 </h1>
