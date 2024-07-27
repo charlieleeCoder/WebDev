@@ -3,5 +3,5 @@
 public record CreateWorkoutRequest(
     string WorkoutLocation,
     DateTime WorkoutStartDateTime,
-    string WorkoutNotes
+    string? WorkoutNotes
 );

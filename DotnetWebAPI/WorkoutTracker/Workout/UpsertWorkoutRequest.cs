@@ -6,7 +6,7 @@ public record UpsertWorkoutRequest(
     Guid WorkoutID,
     string WorkoutLocation,
     DateTime WorkoutStartDateTime,
-    string WorkoutNotes,
-    ExerciseNamespace.Exercise[] Exercises
+    string? WorkoutNotes,
+    List<ExerciseNamespace.Exercise>? Exercises
 );
 

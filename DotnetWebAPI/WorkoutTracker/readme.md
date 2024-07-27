@@ -132,7 +132,7 @@ POST /Exercises
         100.0,
         112.5
     ],
-    repsEachSet: [
+    "repsEachSet": [
         12,
         8,
         5,
@@ -167,7 +167,7 @@ Location: {{host}}/Exercises/{{id}}
         100.0,
         112.5
     ],
-    repsEachSet: [
+    "repsEachSet": [
         12,
         8,
         5,
@@ -205,7 +205,7 @@ GET /Exercises/{{id}}
         100.0,
         112.5
     ],
-    repsEachSet: [
+    "repsEachSet": [
         12,
         8,
         5,
@@ -237,7 +237,7 @@ PUT /Exercises/{{id}}
         100.0,
         112.5
     ],
-    repsEachSet: [
+    "repsEachSet": [
         12,
         8,
         5,
@@ -281,4 +281,4 @@ DELETE /Exercises/{{id}}
 # Credits
 
 - [ErrorOr](https://github.com/amantinband/error-or) - A union of an error or a result developed by a Microsoft Employee. I followed his Restful API tutorial initially, though modified the examples and stucture. 
-- Note: he seems to have been inspired by Rust's "Result" struct approach, which I am somewhat familar with and it is a nice way to handle errors.
+- Note: he seems to have been inspired by Rust's "Result" struct approach, which I am familar with and it is an elegant way to handle errors.
