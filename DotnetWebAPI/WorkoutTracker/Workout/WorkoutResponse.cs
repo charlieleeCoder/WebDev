@@ -1,6 +1,12 @@
-﻿namespace WorkoutTracker.Workout
-{
-    public class WorkoutResponse
-    {
-    }
-}
+﻿using ExerciseNamespace = WorkoutTracker.Services.Exercise;
+
+namespace WorkoutTracker.Workout;
+
+public record WorkoutResponse(
+    Guid WorkoutID,
+    string WorkoutLocation,
+    DateTime WorkoutStartDateTime,
+    string WorkoutNotes,
+    ExerciseNamespace.Exercise[] Exercises
+);
+

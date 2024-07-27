@@ -8,7 +8,6 @@ POST /Workouts
 
 ```json
 {
-    
     "workoutLocation" : "Fitness Last",
     "workoutStartDateTime": "2024-07-20T08:00:00",
     "workoutNotes": "Good session!"
@@ -27,14 +26,17 @@ Location: {{host}}/Workouts/{{id}}
 
 ```json
 {
-    "id": "00000000-0000-0000-0000-000000000000",
+    "workoutID": "00000000-0000-0000-0000-000000000001",
     "workoutLocation" : "Fitness Last",
     "workoutStartDateTime": "2024-07-20T08:00:00",
-    "workoutNotes": "Good session!"
+    "workoutNotes": "Good session!",
+    "exercises":[
+        
+    ]
 }
 ```
 
-## Get Workout
+# Get Workout
 
 ### Get Workout Request
 
@@ -50,14 +52,17 @@ GET /Workouts/{{id}}
 
 ```json
 {
-    "id": "00000000-0000-0000-0000-000000000000",
+    "workoutID": "00000000-0000-0000-0000-000000000001",
     "workoutLocation" : "Fitness Last",
     "workoutStartDateTime": "2024-07-20T08:00:00",
-    "workoutNotes": "Good session!"
+    "workoutNotes": "Good session!",
+    "exercises":[
+        
+    ]
 }
 ```
 
-## Update Workout
+# Update Workout
 
 ### Update Workout Request
 
@@ -67,9 +72,13 @@ PUT /Workouts/{{id}}
 
 ```json
 {
+    "workoutID": "00000000-0000-0000-0000-000000000001",
     "workoutLocation" : "Fitness Last",
     "workoutStartDateTime": "2024-07-20T08:00:00",
-    "workoutNotes": "Good session!"
+    "workoutNotes": "Good session!",
+    "exercises":[
+        
+    ]
 }
 ```
 
@@ -89,7 +98,7 @@ or
 Location: {{host}}/Workouts/{{id}}
 ```
 
-## Delete Workout
+# Delete Workout
 
 ### Delete Workout Request
 
@@ -103,9 +112,9 @@ DELETE /Workouts/{{id}}
 204 No Content
 ```
 
-## Create Exercise
+# Add Exercise
 
-### Create Exercise Request
+### Add Exercise Request
 
 ```js
 POST /Exercises
@@ -113,8 +122,9 @@ POST /Exercises
 
 ```json
 {
+    "linkedWorkoutID": "00000000-0000-0000-0000-000000000001",
     "exerciseName": "Bench press",
-    "sets": 5,
+    "numberOfSets": 5,
     "weightEachSet": [
         60.0,
         80.0,
@@ -128,12 +138,13 @@ POST /Exercises
         5,
         3,
         2
-    ]
+    ],
+    "notes": ""
 }
 ```
 
 
-### Create Exercise Response
+### Add Exercise Response
 
 ```js
 201 Created
@@ -145,9 +156,10 @@ Location: {{host}}/Exercises/{{id}}
 
 ```json
 {
-    "id": "00000000-0000-0000-0000-000000000000",
+    "linkedWorkoutID": "00000000-0000-0000-0000-000000000001",
+    "exerciseID": "00000000-0000-0000-0000-000000000002",
     "exerciseName": "Bench press",
-    "sets": 5,
+    "numberOfSets": 5,
     "weightEachSet": [
         60.0,
         80.0,
@@ -161,11 +173,12 @@ Location: {{host}}/Exercises/{{id}}
         5,
         3,
         2
-    ]
+    ],
+    "notes": ""
 }
 ```
 
-## Get Exercise
+# Get Exercise
 
 ### Get Exercise Request
 
@@ -181,9 +194,10 @@ GET /Exercises/{{id}}
 
 ```json
 {
-    "id": "00000000-0000-0000-0000-000000000000",
+    "linkedWorkoutID": "00000000-0000-0000-0000-000000000001",
+    "exerciseID": "00000000-0000-0000-0000-000000000002",
     "exerciseName": "Bench press",
-    "sets": 5,
+    "numberOfSets": 5,
     "weightEachSet": [
         60.0,
         80.0,
@@ -197,11 +211,12 @@ GET /Exercises/{{id}}
         5,
         3,
         2
-    ]
+    ],
+    "notes": ""
 }
 ```
 
-## Update Exercise
+# Update Exercise
 
 ### Update Exercise Request
 
@@ -211,8 +226,10 @@ PUT /Exercises/{{id}}
 
 ```json
 {
+    "linkedWorkoutID": "00000000-0000-0000-0000-000000000001",
+    "exerciseID": "00000000-0000-0000-0000-000000000002",
     "exerciseName": "Bench press",
-    "sets": 5,
+    "numberOfSets": 5,
     "weightEachSet": [
         60.0,
         80.0,
@@ -226,7 +243,8 @@ PUT /Exercises/{{id}}
         5,
         3,
         2
-    ]
+    ],
+    "notes": ""
 }
 ```
 
@@ -246,7 +264,7 @@ or
 Location: {{host}}/Exercises/{{id}}
 ```
 
-## Delete Exercise
+# Delete Exercise
 
 ### Delete Exercise Request
 
@@ -262,4 +280,5 @@ DELETE /Exercises/{{id}}
 
 # Credits
 
-- [ErrorOr](https://github.com/amantinband/error-or) - A simple union of an error or a result. Note: seems to be inspired by Rust's approach.
+- [ErrorOr](https://github.com/amantinband/error-or) - A union of an error or a result developed by a Microsoft Employee. I followed his Restful API tutorial initially, though modified the examples and stucture. 
+- Note: he seems to have been inspired by Rust's "Result" struct approach, which I am somewhat familar with and it is a nice way to handle errors.

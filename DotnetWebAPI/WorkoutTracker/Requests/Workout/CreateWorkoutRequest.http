@@ -1,0 +1,8 @@
+POST http://localhost:5157/workouts
+Content-Type: application/json
+
+{
+    "workoutLocation" : "Fitness Last",
+    "workoutStartDateTime": "2024-07-20T08:00:00",
+    "workoutNotes": "Good session!"
+}

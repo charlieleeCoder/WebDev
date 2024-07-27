@@ -1,0 +1,12 @@
+@id=00000000-0000-0000-0000-000000000001
+
+PUT http://localhost:5157/workouts/{{id}}
+Content-Type: application/json
+
+{
+    "workoutID": "00000000-0000-0000-0000-000000000001",
+    "workoutLocation": "Fitness Last",
+    "workoutStartDateTime": "2024-07-20T08:00:00",
+    "workoutNotes": "Good session!",
+    "exercises":[]
+}
