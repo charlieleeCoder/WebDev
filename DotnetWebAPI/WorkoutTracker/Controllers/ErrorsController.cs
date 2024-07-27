@@ -1,6 +1,13 @@
-﻿namespace WorkoutTracker.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace WorkoutTracker.Controllers
 {
-    public class ErrorController
+    public class ErrorController : ControllerBase
     {
+        [Route("/error")]
+        public IActionResult Error()
+        {
+            return Problem();
+        }
     }
 }
