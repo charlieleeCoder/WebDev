@@ -6,5 +6,5 @@ public record AddExerciseRequest(
     int NumberOfSets,
     List<float> WeightEachSet,
     List<int> RepsEachSet,
-    string notes
+    string? Notes
 );

@@ -8,6 +8,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using WorkoutTracker.Exercise;
+using WorkoutTracker.Services.Exercise;
 
 namespace WorkoutTracker.Controllers
 {
@@ -15,16 +16,58 @@ namespace WorkoutTracker.Controllers
     [Route("[controller]")]
     public class ExercisesController : ControllerBase
     {
+        private readonly IExerciseService _exerciseService;
+        public ExercisesController(IExerciseService service)
+        {
+            _exerciseService = service;
+        }
+
         [HttpPost()]
         public IActionResult CreateExercise(AddExerciseRequest request)
         {
-            return Ok(request);
+            var exercise = new Models.Exercise(
+                request.LinkedWorkoutID,
+                request.ExerciseName,
+                request.NumberOfSets,
+                request.WeightEachSet, 
+                request.RepsEachSet
+            );
+
+             // TODO: Save exercise to database. Currently stored in dict.
+
+            var response = new ExerciseResponse(
+                exercise.LinkedWorkoutID,
+                exercise.ExerciseID,
+                exercise.ExerciseName,
+                exercise.NumberOfSets,
+                exercise.WeightEachSet, 
+                exercise.RepsEachSet,
+                exercise.Notes!
+            );
+
+            return CreatedAtAction(
+                actionName: nameof(GetExercise),
+                routeValues: new { id = exercise.ExerciseID },
+                value: request
+            );
         }
 
         [HttpGet("{id:guid}")]
         public IActionResult GetExercise(Guid id)
         {
-            return Ok(id);
+            Models.Exercise exercise = _exerciseService.GetExercise(id);
+
+            var response = new ExerciseResponse(
+                LinkedWorkoutID: exercise.LinkedWorkoutID,
+                ExerciseID: exercise.ExerciseID, 
+                ExerciseName: exercise.ExerciseName, 
+                NumberOfSets: exercise.NumberOfSets, 
+                WeightEachSet: exercise.WeightEachSet,
+                RepsEachSet: exercise.RepsEachSet,
+                Notes: exercise.Notes!
+            );
+
+            return Ok(response);
         }
 
         [HttpPut("{id:guid}")]

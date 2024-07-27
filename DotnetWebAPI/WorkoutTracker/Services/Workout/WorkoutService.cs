@@ -1,4 +1,5 @@
-﻿namespace WorkoutTracker.Services.Workout;
+﻿
+namespace WorkoutTracker.Services.Workout;
 
 public class WorkoutService : IWorkoutService
 {
@@ -15,6 +16,16 @@ public class WorkoutService : IWorkoutService
     public Models.Workout GetWorkout(Guid id)
     {
         return _workout[id];
+    }
+
+    public void UpsertWorkout(Models.Workout workout)
+    {
+        _workout[workout.WorkoutID] = workout;
+    }
+
+    public void DeleteWorkout(Guid id)
+    {
+        _workout.Remove(id);
     }
 }
 

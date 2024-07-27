@@ -7,5 +7,5 @@ public record UpsertExerciseRequest(
     int NumberOfSets,
     List<float> WeightEachSet,
     List<int> RepsEachSet,
-    string notes
+    string? Notes
 );

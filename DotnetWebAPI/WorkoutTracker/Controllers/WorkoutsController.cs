@@ -9,7 +9,6 @@
 
 using Microsoft.AspNetCore.Mvc;
 using WorkoutTracker.Workout;
-using Models = WorkoutTracker.Models;
 using WorkoutTracker.Services.Workout;
 
 namespace WorkoutTracker.Controllers
@@ -30,10 +29,11 @@ namespace WorkoutTracker.Controllers
             var workout = new Models.Workout(
                 request.WorkoutLocation,
                 request.WorkoutStartDateTime,
-                request.WorkoutNotes!
+                request.WorkoutNotes!,
+                exercises: null
             );
 
-            // TODO: Save breakfast to database. Currently stored in dict.
+            // TODO: Save workout to database. Currently stored in dict.
             _workoutService.CreateWorkout(workout);
 
             var response = new WorkoutResponse(
@@ -70,13 +70,24 @@ namespace WorkoutTracker.Controllers
         [HttpPut("{id:guid}")]
         public IActionResult UpsertWorkout(UpsertWorkoutRequest request)
         {
+            var workout = new Models.Workout(
+                request.WorkoutID,
+                request.WorkoutLocation,
+                request.WorkoutStartDateTime,
+                request.WorkoutNotes!,
+                request.Exercises!
+            );
+
+            _workoutService.UpsertWorkout(workout);
+            
             return Ok(request);
         }
 
         [HttpDelete("{id:guid}")]
         public IActionResult DeleteWorkout(Guid id)
         {
-            return Ok(id);
+            _workoutService.DeleteWorkout(id);
+            return NoContent();
         }
     }
 }
