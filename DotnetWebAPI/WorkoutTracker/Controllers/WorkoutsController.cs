@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WorkoutTracker.Workout;
-
-/*
+﻿/*
     A controller to handle the creation and updating of the workout.
 
     Most relevant information is stored in each object within the List<Exercise>, 
     so the Upsert is for managing location and date meta data only.
 
     Deleting the workout will remove all Exercises stored in the List<T> also.
- */
+*/
+
+using Microsoft.AspNetCore.Mvc;
+using WorkoutTracker.Workout;
+using Models = WorkoutTracker.Models;
+using WorkoutTracker.Services.Workout;
 
 namespace WorkoutTracker.Controllers
 {
@@ -16,16 +18,53 @@ namespace WorkoutTracker.Controllers
     [Route("[controller]")]
     public class WorkoutsController : ControllerBase
     {
-        [HttpPost()]
+        private readonly IWorkoutService _workoutService;
+        public WorkoutsController(IWorkoutService workoutService)
+        {
+            _workoutService = workoutService;
+        }
+
+        [HttpPost]
         public IActionResult CreateWorkout(CreateWorkoutRequest request)
         {
-            return Ok(request);
+            var workout = new Models.Workout(
+                request.WorkoutLocation,
+                request.WorkoutStartDateTime,
+                request.WorkoutNotes!
+            );
+
+            // TODO: Save breakfast to database. Currently stored in dict.
+            _workoutService.CreateWorkout(workout);
+
+            var response = new WorkoutResponse(
+                workout.WorkoutID,
+                workout.WorkoutLocation,
+                workout.WorkoutStartDateTime,
+                workout.WorkoutNotes,
+                null
+            );
+
+            return CreatedAtAction(
+                actionName: nameof(GetWorkout),
+                routeValues: new { id = workout.WorkoutID },
+                value: response
+            );
         }
 
         [HttpGet("{id:guid}")]
         public IActionResult GetWorkout(Guid id)
         {
-            return Ok(id);
+            Models.Workout workout = _workoutService.GetWorkout(id);
+
+            var response = new WorkoutResponse(
+                WorkoutID: workout.WorkoutID,
+                WorkoutLocation: workout.WorkoutLocation, 
+                WorkoutStartDateTime: workout.WorkoutStartDateTime, 
+                WorkoutNotes: workout.WorkoutNotes, 
+                Exercises: workout.Exercises
+            );
+
+            return Ok(response);
         }
 
         [HttpPut("{id:guid}")]

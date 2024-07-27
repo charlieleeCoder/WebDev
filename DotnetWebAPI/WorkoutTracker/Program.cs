@@ -1,4 +1,6 @@
 
+using WorkoutTracker.Services.Workout;
+
 namespace WorkoutTracker
 {
     public class Program
@@ -8,6 +10,7 @@ namespace WorkoutTracker
             var builder = WebApplication.CreateBuilder(args);
             {
                 builder.Services.AddControllers();
+                builder.Services.AddTransient<IWorkoutService, WorkoutService>();
             }
             
             var app = builder.Build();

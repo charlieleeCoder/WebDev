@@ -1,4 +1,4 @@
-﻿using ExerciseNamespace = WorkoutTracker.Services.Exercise;
+﻿using Models = WorkoutTracker.Models.Exercise;
 
 namespace WorkoutTracker.Workout;
 
@@ -7,6 +7,6 @@ public record UpsertWorkoutRequest(
     string WorkoutLocation,
     DateTime WorkoutStartDateTime,
     string? WorkoutNotes,
-    List<ExerciseNamespace.Exercise>? Exercises
+    List<Models.Exercise>? Exercises
 );
 

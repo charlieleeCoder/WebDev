@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WorkoutTracker.Exercise;
-
-/*
+﻿/*
     A controller to handle the creation and updating of the exercises.
 
     These are a component of each workout, i.e. each Workout has a List<Exercise>.
 
     Each exercise stores exercise name, weight array, rep array, etc.
  */
+
+using Microsoft.AspNetCore.Mvc;
+using WorkoutTracker.Exercise;
 
 namespace WorkoutTracker.Controllers
 {

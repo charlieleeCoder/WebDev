@@ -9,7 +9,7 @@ namespace WorkoutTracker.Models;
 public class Exercise
 {
     public Guid LinkedWorkoutID         { get; }
-    public Guid ExerciseID              { get; } = new Guid();
+    public Guid ExerciseID              { get; } = Guid.NewGuid();
     public string ExerciseName          { get; }
     public int NumberOfSets             { get; }
     public List<float> WeightEachSet    { get; }

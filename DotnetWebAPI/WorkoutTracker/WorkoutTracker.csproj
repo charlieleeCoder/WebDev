@@ -10,6 +10,7 @@
   <ItemGroup>
     <Folder Include="Services\Exercise\" />
     <Folder Include="Services\Workout\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>
