@@ -10,83 +10,82 @@ using Microsoft.AspNetCore.Mvc;
 using WorkoutTracker.Exercise;
 using WorkoutTracker.Services.Exercise;
 
-namespace WorkoutTracker.Controllers
+namespace WorkoutTracker.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class ExercisesController(IExerciseService service) : ControllerBase
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class ExercisesController(IExerciseService service) : ControllerBase
+    private readonly IExerciseService _exerciseService = service;
+
+    [HttpPost()]
+    public IActionResult CreateExercise(AddExerciseRequest request)
     {
-        private readonly IExerciseService _exerciseService = service;
+        var exercise = new Models.Exercise(
+            request.LinkedWorkoutID,
+            request.ExerciseName,
+            request.NumberOfSets,
+            request.WeightEachSet, 
+            request.RepsEachSet
+        );
 
-        [HttpPost()]
-        public IActionResult CreateExercise(AddExerciseRequest request)
-        {
-            var exercise = new Models.Exercise(
-                request.LinkedWorkoutID,
-                request.ExerciseName,
-                request.NumberOfSets,
-                request.WeightEachSet, 
-                request.RepsEachSet
-            );
+         // TODO: Save exercise to database. Currently stored in dict.
+        _exerciseService.CreateExercise(exercise);
 
-             // TODO: Save exercise to database. Currently stored in dict.
-            _exerciseService.CreateExercise(exercise);
+        var response = new ExerciseResponse(
+            exercise.LinkedWorkoutID,
+            exercise.ExerciseID,
+            exercise.ExerciseName,
+            exercise.NumberOfSets,
+            exercise.WeightEachSet, 
+            exercise.RepsEachSet,
+            exercise.Notes!
+        );
 
-            var response = new ExerciseResponse(
-                exercise.LinkedWorkoutID,
-                exercise.ExerciseID,
-                exercise.ExerciseName,
-                exercise.NumberOfSets,
-                exercise.WeightEachSet, 
-                exercise.RepsEachSet,
-                exercise.Notes!
-            );
+        return CreatedAtAction(
+            actionName: nameof(GetExercise),
+            routeValues: new { id = exercise.ExerciseID },
+            value: response
+        );
+    }
 
-            return CreatedAtAction(
-                actionName: nameof(GetExercise),
-                routeValues: new { id = exercise.ExerciseID },
-                value: response
-            );
-        }
+    [HttpGet("{id:guid}")]
+    public IActionResult GetExercise(Guid id)
+    {
+        Models.Exercise exercise = _exerciseService.GetExercise(id);
 
-        [HttpGet("{id:guid}")]
-        public IActionResult GetExercise(Guid id)
-        {
-            Models.Exercise exercise = _exerciseService.GetExercise(id);
+        var response = new ExerciseResponse(
+            LinkedWorkoutID: exercise.LinkedWorkoutID,
+            ExerciseID: exercise.ExerciseID, 
+            ExerciseName: exercise.ExerciseName, 
+            NumberOfSets: exercise.NumberOfSets, 
+            WeightEachSet: exercise.WeightEachSet,
+            RepsEachSet: exercise.RepsEachSet,
+            Notes: exercise.Notes!
+        );
 
-            var response = new ExerciseResponse(
-                LinkedWorkoutID: exercise.LinkedWorkoutID,
-                ExerciseID: exercise.ExerciseID, 
-                ExerciseName: exercise.ExerciseName, 
-                NumberOfSets: exercise.NumberOfSets, 
-                WeightEachSet: exercise.WeightEachSet,
-                RepsEachSet: exercise.RepsEachSet,
-                Notes: exercise.Notes!
-            );
+        return Ok(response);
+    }
 
-            return Ok(response);
-        }
+    [HttpPut]
+    public IActionResult UpsertExercise(UpsertExerciseRequest request)
+    {
+        var exercise = new Models.Exercise(
+            request.LinkedWorkoutID,
+            request.ExerciseName,
+            request.NumberOfSets,
+            request.WeightEachSet,
+            request.RepsEachSet
+        ); 
 
-        [HttpPut]
-        public IActionResult UpsertExercise(UpsertExerciseRequest request)
-        {
-            var exercise = new Models.Exercise(
-                request.LinkedWorkoutID,
-                request.ExerciseName,
-                request.NumberOfSets,
-                request.WeightEachSet,
-                request.RepsEachSet
-            ); 
+        _exerciseService.UpsertExercise(exercise);
 
-            _exerciseService.UpsertExercise(exercise);
+        return Ok(request);
+    }
 
-            return Ok(request);
-        }
-
-        [HttpDelete("{id:guid}")]
-        public IActionResult DeleteExercise(Guid id)
-        {
-            return Ok(id);
-        }
+    [HttpDelete("{id:guid}")]
+    public IActionResult DeleteExercise(Guid id)
+    {
+        return Ok(id);
     }
 }

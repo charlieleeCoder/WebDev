@@ -1,5 +1,4 @@
-﻿
-namespace WorkoutTracker.Services.Exercise;
+﻿namespace WorkoutTracker.Services.Exercise;
 
 public class ExerciseService : IExerciseService
 {

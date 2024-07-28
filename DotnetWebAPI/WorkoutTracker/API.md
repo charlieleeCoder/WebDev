@@ -29,10 +29,7 @@ Location: {{host}}/Workouts/{{id}}
     "workoutID": "00000000-0000-0000-0000-000000000001",
     "workoutLocation" : "Fitness Last",
     "workoutStartDateTime": "2024-07-20T08:00:00",
-    "workoutNotes": "Good session!",
-    "exercises":[
-        
-    ]
+    "workoutNotes": "Good session!"
 }
 ```
 
@@ -55,10 +52,7 @@ GET /Workouts/{{id}}
     "workoutID": "00000000-0000-0000-0000-000000000001",
     "workoutLocation" : "Fitness Last",
     "workoutStartDateTime": "2024-07-20T08:00:00",
-    "workoutNotes": "Good session!",
-    "exercises":[
-        
-    ]
+    "workoutNotes": "Good session!"
 }
 ```
 
@@ -75,10 +69,7 @@ PUT /Workouts/{{id}}
     "workoutID": "00000000-0000-0000-0000-000000000001",
     "workoutLocation" : "Fitness Last",
     "workoutStartDateTime": "2024-07-20T08:00:00",
-    "workoutNotes": "Good session!",
-    "exercises":[
-        
-    ]
+    "workoutNotes": "Good session!"
 }
 ```
 
@@ -277,8 +268,3 @@ DELETE /Exercises/{{id}}
 ```js
 204 No Content
 ```
-
-# Credits
-
-- [ErrorOr](https://github.com/amantinband/error-or) - A union of an error or a result developed by a Microsoft Employee. I followed his Restful API tutorial initially, though modified the examples and stucture. 
-- Note: he seems to have been inspired by Rust's "Result" struct approach, which I am familar with and it is an elegant way to handle errors.

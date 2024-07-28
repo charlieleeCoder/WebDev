@@ -14,34 +14,29 @@ public class Workout
     public string WorkoutLocation           { get; }
     public DateTime WorkoutStartDateTime    { get; }
     public string? WorkoutNotes             { get; }
-    public List<Exercise>? Exercises        { get; set; } = default;
 
     public Workout(
         Guid workoutID,
         string workoutLocation, 
         DateTime workoutStartDateTime, 
-        string workoutNotes, 
-        List<Exercise>? exercises
+        string workoutNotes
     )
     {
         WorkoutID = workoutID;
         WorkoutLocation = workoutLocation;
         WorkoutStartDateTime = workoutStartDateTime;
         WorkoutNotes = workoutNotes;
-        Exercises = exercises;
     }
 
         public Workout(
         string workoutLocation, 
         DateTime workoutStartDateTime, 
-        string workoutNotes, 
-        List<Exercise>? exercises
+        string workoutNotes
     )
     {
         WorkoutID = Guid.NewGuid();
         WorkoutLocation = workoutLocation;
         WorkoutStartDateTime = workoutStartDateTime;
         WorkoutNotes = workoutNotes;
-        Exercises = exercises;
     }
 }

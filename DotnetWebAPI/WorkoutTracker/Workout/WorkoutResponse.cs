@@ -6,6 +6,5 @@ public record WorkoutResponse(
     Guid WorkoutID,
     string WorkoutLocation,
     DateTime WorkoutStartDateTime,
-    string? WorkoutNotes,
-    List<Models.Exercise>? Exercises
+    string? WorkoutNotes
 );

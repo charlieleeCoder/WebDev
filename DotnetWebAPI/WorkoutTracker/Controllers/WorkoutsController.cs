@@ -11,85 +11,80 @@ using Microsoft.AspNetCore.Mvc;
 using WorkoutTracker.Workout;
 using WorkoutTracker.Services.Workout;
 
-namespace WorkoutTracker.Controllers
+namespace WorkoutTracker.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class WorkoutsController : ControllerBase
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class WorkoutsController : ControllerBase
+    private readonly IWorkoutService _workoutService;
+    public WorkoutsController(IWorkoutService workoutService)
     {
-        private readonly IWorkoutService _workoutService;
-        public WorkoutsController(IWorkoutService workoutService)
-        {
-            _workoutService = workoutService;
-        }
+        _workoutService = workoutService;
+    }
 
-        [HttpPost]
-        public IActionResult CreateWorkout(CreateWorkoutRequest request)
-        {
-            var workout = new Models.Workout(
-                request.WorkoutLocation,
-                request.WorkoutStartDateTime,
-                request.WorkoutNotes!,
-                exercises: null
-            );
+    [HttpPost]
+    public IActionResult CreateWorkout(CreateWorkoutRequest request)
+    {
+        var workout = new Models.Workout(
+            request.WorkoutLocation,
+            request.WorkoutStartDateTime,
+            request.WorkoutNotes!
+        );
 
-            // TODO: Save workout to database. Currently stored in dict.
-            _workoutService.CreateWorkout(workout);
+        // TODO: Save workout to database. Currently stored in dict.
+        _workoutService.CreateWorkout(workout);
 
-            var response = new WorkoutResponse(
-                workout.WorkoutID,
-                workout.WorkoutLocation,
-                workout.WorkoutStartDateTime,
-                workout.WorkoutNotes,
-                null
-            );
+        var response = new WorkoutResponse(
+            workout.WorkoutID,
+            workout.WorkoutLocation,
+            workout.WorkoutStartDateTime,
+            workout.WorkoutNotes
+        );
 
-            return CreatedAtAction(
-                actionName: nameof(GetWorkout),
-                routeValues: new { id = workout.WorkoutID },
-                value: response
-            );
-        }
+        return CreatedAtAction(
+            actionName: nameof(GetWorkout),
+            routeValues: new { id = workout.WorkoutID },
+            value: response
+        );
+    }
 
-        [HttpGet("{id:guid}")]
-        public IActionResult GetWorkout(Guid id)
-        {
-            Models.Workout workout = _workoutService.GetWorkout(id);
+    [HttpGet("{id:guid}")]
+    public IActionResult GetWorkout(Guid id)
+    {
+        Models.Workout workout = _workoutService.GetWorkout(id);
 
-            var response = new WorkoutResponse(
-                WorkoutID: workout.WorkoutID,
-                WorkoutLocation: workout.WorkoutLocation, 
-                WorkoutStartDateTime: workout.WorkoutStartDateTime, 
-                WorkoutNotes: workout.WorkoutNotes, 
-                Exercises: workout.Exercises
-            );
+        var response = new WorkoutResponse(
+            WorkoutID: workout.WorkoutID,
+            WorkoutLocation: workout.WorkoutLocation, 
+            WorkoutStartDateTime: workout.WorkoutStartDateTime, 
+            WorkoutNotes: workout.WorkoutNotes
+        );
 
-            return Ok(response);
-        }
+        return Ok(response);
+    }
 
-        [HttpPut]
-        public IActionResult UpsertWorkout(UpsertWorkoutRequest request)
-        {   
-            
-            // Can overwrite existing object with updated version, or insert new
-            var workout = new Models.Workout(
-                request.WorkoutID,
-                request.WorkoutLocation,
-                request.WorkoutStartDateTime,
-                request.WorkoutNotes!,
-                request.Exercises!
-            );
+    [HttpPut("{id:guid}")]
+    public IActionResult UpsertWorkout(Guid id, UpsertWorkoutRequest request)
+    {   
+        
+        // Can overwrite existing object with updated version, or insert new
+        var workout = new Models.Workout(
+            id,
+            request.WorkoutLocation,
+            request.WorkoutStartDateTime,
+            request.WorkoutNotes!
+        );
 
-            _workoutService.UpsertWorkout(workout);
-            
-            return Ok(request);
-        }
+        _workoutService.UpsertWorkout(workout);
+        
+        return Ok(request);
+    }
 
-        [HttpDelete("{id:guid}")]
-        public IActionResult DeleteWorkout(Guid id)
-        {
-            _workoutService.DeleteWorkout(id);
-            return NoContent();
-        }
+    [HttpDelete("{id:guid}")]
+    public IActionResult DeleteWorkout(Guid id)
+    {
+        _workoutService.DeleteWorkout(id);
+        return NoContent();
     }
 }
