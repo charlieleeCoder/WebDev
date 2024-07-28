@@ -1,10 +1,8 @@
 ﻿/*
     A controller to handle the creation and updating of the workout.
 
-    Most relevant information is stored in each object within the List<Exercise>, 
+    Most relevant training information is stored in the Exercise objects instead,
     so the Upsert is for managing location and date meta data only.
-
-    Deleting the workout will remove all Exercises stored in the List<T> also.
 */
 
 using Microsoft.AspNetCore.Mvc;
