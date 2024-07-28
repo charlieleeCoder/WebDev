@@ -14,7 +14,7 @@ public class ExerciseService : IExerciseService
 
     public void DeleteExercise(Guid id)
     {
-        _exercise.Remove(id);;
+        _exercise.Remove(id);
     }
 
     public Models.Exercise GetExercise(Guid id)

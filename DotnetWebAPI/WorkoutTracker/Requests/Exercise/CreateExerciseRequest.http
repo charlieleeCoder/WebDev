@@ -2,7 +2,7 @@ POST http://localhost:5157/exercises
 Content-Type: application/json
 
 {
-    "linkedWorkoutID": "00000000-0000-0000-0000-000000000001",
+    "linkedWorkoutID": "af51656b-7c35-4710-9ddd-d8b0a821c554",
     "exerciseName": "Bench press",
     "numberOfSets": 5,
     "weightEachSet": [

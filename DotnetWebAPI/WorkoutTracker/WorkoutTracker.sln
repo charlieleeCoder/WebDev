@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutTracker", "WorkoutTracker.csproj", "{DEB01743-8BBA-4C1C-BDF2-E6BB8E0721DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkoutTracker", "WorkoutTracker.csproj", "{DEB01743-8BBA-4C1C-BDF2-E6BB8E0721DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutTracker.Tests", "..\WorkoutTracker.Tests\WorkoutTracker.Tests.csproj", "{18A951C2-FF5D-4187-AE10-DC8A7DFB780D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DEB01743-8BBA-4C1C-BDF2-E6BB8E0721DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEB01743-8BBA-4C1C-BDF2-E6BB8E0721DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEB01743-8BBA-4C1C-BDF2-E6BB8E0721DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18A951C2-FF5D-4187-AE10-DC8A7DFB780D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18A951C2-FF5D-4187-AE10-DC8A7DFB780D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18A951C2-FF5D-4187-AE10-DC8A7DFB780D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18A951C2-FF5D-4187-AE10-DC8A7DFB780D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

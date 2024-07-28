@@ -3,6 +3,7 @@
     and with Exercise array for Upsert variant.
 */
 
+using WorkoutTracker.Exercise;
 using ExerciseNamespace = WorkoutTracker.Services.Exercise;
 
 namespace WorkoutTracker.Models;

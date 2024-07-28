@@ -67,9 +67,11 @@ namespace WorkoutTracker.Controllers
             return Ok(response);
         }
 
-        [HttpPut("{id:guid}")]
+        [HttpPut]
         public IActionResult UpsertWorkout(UpsertWorkoutRequest request)
-        {
+        {   
+            
+            // Can overwrite existing object with updated version, or insert new
             var workout = new Models.Workout(
                 request.WorkoutID,
                 request.WorkoutLocation,

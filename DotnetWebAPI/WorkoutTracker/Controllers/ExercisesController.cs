@@ -14,13 +14,9 @@ namespace WorkoutTracker.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ExercisesController : ControllerBase
+    public class ExercisesController(IExerciseService service) : ControllerBase
     {
-        private readonly IExerciseService _exerciseService;
-        public ExercisesController(IExerciseService service)
-        {
-            _exerciseService = service;
-        }
+        private readonly IExerciseService _exerciseService = service;
 
         [HttpPost()]
         public IActionResult CreateExercise(AddExerciseRequest request)
@@ -34,6 +30,7 @@ namespace WorkoutTracker.Controllers
             );
 
              // TODO: Save exercise to database. Currently stored in dict.
+            _exerciseService.CreateExercise(exercise);
 
             var response = new ExerciseResponse(
                 exercise.LinkedWorkoutID,
@@ -48,7 +45,7 @@ namespace WorkoutTracker.Controllers
             return CreatedAtAction(
                 actionName: nameof(GetExercise),
                 routeValues: new { id = exercise.ExerciseID },
-                value: request
+                value: response
             );
         }
 
@@ -70,9 +67,19 @@ namespace WorkoutTracker.Controllers
             return Ok(response);
         }
 
-        [HttpPut("{id:guid}")]
+        [HttpPut]
         public IActionResult UpsertExercise(UpsertExerciseRequest request)
         {
+            var exercise = new Models.Exercise(
+                request.LinkedWorkoutID,
+                request.ExerciseName,
+                request.NumberOfSets,
+                request.WeightEachSet,
+                request.RepsEachSet
+            ); 
+
+            _exerciseService.UpsertExercise(exercise);
+
             return Ok(request);
         }
 
